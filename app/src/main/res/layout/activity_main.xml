@@ -1,28 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        xmlns:android="http://schemas.android.com/apk/res/android">
+   <data>
+       <variable
+               name="viewModel"
+               type="com.example.try12.viewModel.ViewModel" />
+   </data>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".view.MainActivity">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-    <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ratingBar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            android:layout_marginBottom="220dp" />
+            <EditText
+                    android:id="@+id/ipBlock"
+                    android:layout_width="209dp"
+                    android:layout_height="41dp"
+                    android:ems="10"
+                    android:hint="@string/ip"
+                    android:text="@={viewModel.ip}"
+                    android:inputType="textPersonName"
+                    android:paddingStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.205"
+                    android:background="@drawable/rectangle_text"
+                    android:drawableStart="@drawable/ic_computer"
+                    android:drawableLeft="@drawable/ic_computer"
+                    android:drawablePadding="10dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <EditText
+                    android:id="@+id/portBlock"
+                    android:layout_width="209dp"
+                    android:layout_height="41dp"
+                    android:ems="10"
+                    android:hint="@string/port"
+                    android:text="@={viewModel.port}"
+                    android:paddingStart="8dp"
+                    android:inputType="textPersonName"
+                    app:layout_constraintBottom_toTopOf="@+id/ipBlock"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.864"
+                    android:background="@drawable/rectangle_text"
+                    android:drawableStart="@drawable/ic_computer"
+                    android:drawableLeft="@drawable/ic_computer"
+                    android:drawablePadding="10dp" />
+
+
+
+            <Button
+                    android:id="@+id/connectButton"
+                    android:layout_width="177dp"
+                    android:layout_height="65dp"
+                    android:text="@string/buttonConnect"
+                    android:textColor="#FFEB3B"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:onClick="clickButton"
+                    app:backgroundTint="#9C27B0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/buttonNext"
+                    android:layout_marginBottom="8dp" />
+
+            <Button
+                    android:id="@+id/buttonNext"
+                    android:layout_width="307dp"
+                    android:layout_height="84dp"
+                    android:layout_marginBottom="376dp"
+                    android:text="@string/buttonNext"
+                    android:textColor="#FFEB3B"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="#9C27B0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            <SeekBar
+                    android:id="@+id/seekBar2"
+                    android:layout_width="258dp"
+                    android:layout_height="32dp"
+                    android:max="100000"
+
+                    android:progress="@={viewModel.seekBarProgress}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.464"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.958" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

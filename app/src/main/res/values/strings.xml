@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">try12</string>
+    <string name="app_name">Flight remote joystick</string>
+    <string name="buttonNext">next screen</string>
+    <string name="buttonConnect">connect</string>
+    <string name="connect">connect</string>
+    <string name="please_enter_ip_address_and_port">Please Enter IP address and port</string>
+    <string name="port">Port</string>
+    <string name="ip">IP</string>
 </resources>
