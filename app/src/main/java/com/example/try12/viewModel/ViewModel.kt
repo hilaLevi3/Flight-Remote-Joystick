@@ -1,14 +1,11 @@
 package com.example.try12.viewModel
 
 import com.example.try12.Model
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.io.PrintWriter
 import java.net.Socket
-//import com.example.try12.model.*
 
 class ViewModel(var model: Model) {
-    //var model = Model()
+
+    var client: Socket? = null
 
     var ip: String = ""
         set(value) {
@@ -27,15 +24,46 @@ class ViewModel(var model: Model) {
             println(seekBarProgress)
         }
 
-    var textProgress: String? = null
+    var throttleVM: Int = 0
+        set(value) {
+            field = value
+            println("throttleVM is $field")
+            model.throttle = value.toDouble()
+            throttleString = model.throttle.toString()
+        }
+
+    var throttleString: String = model.throttle.toString()
         get() {
-            return model.str
+            return model.throttle.toString()
         }
         set(value) {
             field = value
-
         }
+
+/*    var aileronVM: Double = 0.0
+        set(value) {
+            field = value
+            model.aileron = value
+        }*/
+
+    var rudderVM: Int = 100000 // making rudder start in 0
+        set(value) {
+            field = value
+            model.rudder = value.toDouble()
+        }
+
+/*    var elevatorVM: Double = 0.0
+        set(value) {
+            field = value
+            model.elevator = value
+        }*/
+
     fun callConnect() {
-        Thread{ model.connect() }.start()
+        Thread{
+            model.connect()
+            if (model.client != null){
+                client = model.client
+            }
+        }.start()
     }
 }

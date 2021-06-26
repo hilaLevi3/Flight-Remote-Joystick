@@ -1,69 +1,74 @@
 package com.example.try12.view
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.example.try12.Model
 import com.example.try12.R
 import com.example.try12.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.view.*
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.io.PrintWriter
-import java.net.Socket
 import com.example.try12.viewModel.*
-//import com.example.try12.model.*
+import com.google.android.material.snackbar.Snackbar
+import com.jackandphantom.joystickview.JoyStickView
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var bindingH: ActivityMainBinding
     lateinit var viewModel: ViewModel
+    lateinit var joystick: Joystick
+    lateinit var joystickVM: JoystickVM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-//        Thread { connect()}.start()
 
         bindingH = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindingH.root)
 
-        //
         var bindingL = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         val model = Model()
         viewModel = ViewModel(model)
         bindingL.viewModel = viewModel
 
+        // create the vm of the joystick (with the model)
+        val joyStickViewVar = findViewById<JoyStickView>(R.id.joystick)
+        joystickVM = JoystickVM(model)
+        joystick = Joystick(joyStickViewVar, joystickVM)
 
 
-        /// connecting  to second screen
-        bindingH.root.buttonNext.setOnClickListener{
-            val intent = Intent(this, SecondScreen::class.java) // package contest
-            startActivity(intent) // will take us from 'this' to the second activity
+        joyStickViewVar.setOnMoveListener { angle, strength ->
+            joystick.setMove(angle, strength.toDouble())
+       }
+
+    }
+
+
+
+
+    fun clickButton(view: View) {
+        // checking if ip and port are filled - assuming for now they're both filled
+        if (viewModel.ip == "" || viewModel.port == "") {
+            //if one or more not filled than print something to screen
+            findViewById<TextView>(R.id.error).visibility = View.VISIBLE
+        } else {
+            findViewById<TextView>(R.id.error).visibility = View.INVISIBLE
+            println("inside click button")
+            viewModel.callConnect()
+            while(viewModel.model.socketActivated != 1);
+            if (viewModel.model.socketSuccess == 0 ){
+                val snack = Snackbar.make(view, "Connection failed, try again", Snackbar.LENGTH_LONG)
+                snack.show()
+            }
         }
     }
 
 
-
-
-    fun connect() {
-        val client = Socket("192.168.32.1", 6400)
-        val output = PrintWriter(client.getOutputStream(), true)
-        val input = BufferedReader(InputStreamReader(client.inputStream))
-
-//        println("Client sending [Hello]")
-        output.print("set /controls/flight/aileron 0.5"+"\r\n")
-        output.flush()
-        println("Client receiving [${input.readLine()}]")
-        client.close()
-    }
-
-    fun clickButton(view: View) {
-        // checking if ip and port are filled - assuming for now they're both filled
-        findViewById<EditText>(R.id.ipBlock)
-        println("inside click button")
-        viewModel.callConnect()
+    // closing the client that stayed open.
+    override fun onDestroy() {
+        super.onDestroy()
+        if (viewModel.client != null){
+            viewModel.client!!.close()
+        }
     }
 }

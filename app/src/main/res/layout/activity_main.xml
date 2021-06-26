@@ -11,7 +11,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".view.MainActivity">
+                tools:context=".view.MainActivity"
+                android:background="@drawable/background3">
 
 
             <EditText
@@ -25,14 +26,14 @@
                     android:paddingStart="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.205"
+                    app:layout_constraintVertical_bias="0.181"
                     android:background="@drawable/rectangle_text"
                     android:drawableStart="@drawable/ic_computer"
                     android:drawableLeft="@drawable/ic_computer"
-                    android:drawablePadding="10dp" />
+                    android:drawablePadding="10dp"
+                    app:layout_constraintHorizontal_bias="0.183" />
 
             <EditText
                     android:id="@+id/portBlock"
@@ -42,18 +43,17 @@
                     android:hint="@string/port"
                     android:text="@={viewModel.port}"
                     android:paddingStart="8dp"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     app:layout_constraintBottom_toTopOf="@+id/ipBlock"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintHorizontal_bias="0.183"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.864"
+                    app:layout_constraintVertical_bias="0.797"
                     android:background="@drawable/rectangle_text"
                     android:drawableStart="@drawable/ic_computer"
                     android:drawableLeft="@drawable/ic_computer"
                     android:drawablePadding="10dp" />
-
 
 
             <Button
@@ -61,47 +61,127 @@
                     android:layout_width="177dp"
                     android:layout_height="65dp"
                     android:text="@string/buttonConnect"
-                    android:textColor="#FFEB3B"
+                    android:textColor="@color/blue1"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:onClick="clickButton"
-                    app:backgroundTint="#9C27B0"
+                    app:backgroundTint="#A6020D33"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/buttonNext"
-                    android:layout_marginBottom="8dp" />
+                    app:layout_constraintTop_toBottomOf="@+id/ipBlock"
+                    android:layout_marginTop="16dp" />
 
-            <Button
-                    android:id="@+id/buttonNext"
-                    android:layout_width="307dp"
-                    android:layout_height="84dp"
-                    android:layout_marginBottom="376dp"
-                    android:text="@string/buttonNext"
-                    android:textColor="#FFEB3B"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="#9C27B0"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+            <!--            app:innerCircleImage="@drawable/stick"-->
 
             <SeekBar
-                    android:id="@+id/seekBar2"
+                    android:progressTint="@color/white"
+                    android:id="@+id/rudder"
                     android:layout_width="258dp"
                     android:layout_height="32dp"
-                    android:max="100000"
-
-                    android:progress="@={viewModel.seekBarProgress}"
+                    android:max="200000"
+                    android:thumb="@drawable/thumb"
+                    android:progress="@={viewModel.rudderVM}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.464"
+                    app:layout_constraintHorizontal_bias="0.575"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:layout_constraintTop_toBottomOf="@+id/joystick" />
+
+            <com.jackandphantom.joystickview.JoyStickView
+                    android:id="@+id/joystick"
+                    android:layout_width="299dp"
+                    android:layout_height="280dp"
+                    app:outerCircleBorderColor="@color/black"
+                    app:innerCircleImage="@drawable/stick5"
+                    app:innerCircleColor="@color/blue5"
+                    app:innerCircleRadius="0.13"
+                    app:outerCircleBorderWidth="10"
+                    app:shadowRadius="7"
+                    app:shadowColor="#000"
+                    app:outerCircleColor="#A6020D33"
+                    android:layout_alignParentBottom="true"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.958" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_bias="0.822"
+                    app:layout_constraintHorizontal_bias="0.642">
+
+            </com.jackandphantom.joystickview.JoyStickView>
+
+            <TextView
+                    android:visibility="invisible"
+                    android:text="@string/error_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/error"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/connectButton"
+                    android:layout_marginTop="16dp"
+                    android:textSize="20dp"
+                    android:textColor="@color/blue2"/>
+
+            <SeekBar
+                    android:progressTint="@color/white"
+                    android:thumb="@drawable/thumb"
+                    android:layout_width="232dp"
+                    android:layout_height="31dp"
+                    android:max="100000"
+                    android:rotation="-90"
+                    android:progress="@={viewModel.throttleVM}"
+                    android:id="@+id/throttle"
+                    app:layout_constraintEnd_toEndOf="@+id/joystick"
+                    android:layout_marginEnd="196dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.687" />
+
+            <TextView
+                    android:id="@+id/airplane"
+                    android:text="✈️"
+                    android:textSize="110dp"
+                    android:textColor="@color/black"
+                    android:layout_width="129dp"
+                    android:layout_height="136dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.977"
+                    app:layout_constraintVertical_bias="0.082" />
+
+            <TextView
+                    android:text="Rudder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/RudderText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="0.547"
+                    app:layout_constraintTop_toTopOf="@+id/rudder"
+                    app:layout_constraintVertical_bias="0.737"
+                    android:textColor="#0A123D"
+                    android:textStyle="bold" />
+
+            <TextView
+                    android:text="Throttle"
+                    android:layout_width="51dp"
+                    android:layout_height="15dp"
+                    android:id="@+id/ThrottleText"
+                    android:textColor="#0A123D"
+                    android:textStyle="bold"
+                    android:rotation="-91"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_bias="0.694"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.102" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

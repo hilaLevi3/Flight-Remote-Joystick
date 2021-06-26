@@ -4,6 +4,7 @@
     <string name="buttonConnect">connect</string>
     <string name="connect">connect</string>
     <string name="please_enter_ip_address_and_port">Please Enter IP address and port</string>
-    <string name="port">Port</string>
-    <string name="ip">IP</string>
+    <string name="port">Enter Port</string>
+    <string name="ip">Enter IP</string>
+    <string name="error_message">Port or IP were not entered. Try again</string>
 </resources>
