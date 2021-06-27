@@ -21,7 +21,7 @@ have fun and try to fly and land the plane safely :)
 
 ## *Demos:*
 A link to the video of a demonstration:
-[demo](http://a.com)
+[demo](https://drive.google.com/drive/folders/1bmPVqRJme5jl3CX0znSF4632uX8FlPxI?usp=sharing)
 
 A link to the UML of the project:
 [UML](https://github.com/liorlevi2299/FlightRemoteJoystick/blob/b0301d40a1cfb728cfc64a4a21d3df0fd35ea88d/UML-Flight-Remote-Joystick.jpg)
