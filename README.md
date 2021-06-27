@@ -58,4 +58,6 @@ for it to work well, change in the settings the phone to english.
 ## *Contributors:*
 Hila Levi, Lior Levi
 
+<img width="484" alt="2021-06-27 (15)" src="https://user-images.githubusercontent.com/73899381/123548272-c6ff6c00-d76c-11eb-87e1-49e8d85d5d83.png">
+<img width="489" alt="2021-06-27 (16)" src="https://user-images.githubusercontent.com/73899381/123548287-d54d8800-d76c-11eb-923c-c81accc6b58b.png">
 
