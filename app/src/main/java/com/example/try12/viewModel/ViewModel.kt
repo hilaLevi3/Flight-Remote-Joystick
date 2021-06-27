@@ -17,17 +17,10 @@ class ViewModel(var model: Model) {
             field = value
             model.portString = field
         }
-    var seekBarProgress: Int = 0
-        set(value) {
-            field = value
-            model.throttle = value.toDouble()
-            println(seekBarProgress)
-        }
 
     var throttleVM: Int = 0
         set(value) {
             field = value
-            println("throttleVM is $field")
             model.throttle = value.toDouble()
             throttleString = model.throttle.toString()
         }
@@ -40,11 +33,6 @@ class ViewModel(var model: Model) {
             field = value
         }
 
-/*    var aileronVM: Double = 0.0
-        set(value) {
-            field = value
-            model.aileron = value
-        }*/
 
     var rudderVM: Int = 100000 // making rudder start in 0
         set(value) {
@@ -52,11 +40,6 @@ class ViewModel(var model: Model) {
             model.rudder = value.toDouble()
         }
 
-/*    var elevatorVM: Double = 0.0
-        set(value) {
-            field = value
-            model.elevator = value
-        }*/
 
     fun callConnect() {
         Thread{

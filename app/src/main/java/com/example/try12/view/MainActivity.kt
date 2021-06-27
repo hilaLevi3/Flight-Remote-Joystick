@@ -53,7 +53,8 @@ class MainActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.error).visibility = View.VISIBLE
         } else {
             findViewById<TextView>(R.id.error).visibility = View.INVISIBLE
-            println("inside click button")
+            viewModel.model.socketActivated = 0
+            viewModel.model.socketSuccess = 0
             viewModel.callConnect()
             while(viewModel.model.socketActivated != 1);
             if (viewModel.model.socketSuccess == 0 ){
