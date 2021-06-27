@@ -7,13 +7,16 @@ VERSION:
 
 ## *Description:*
 In this app you will be able to connect to a flight simulator and fly a plane remotely.
-you can connect to the filght simulator Flight-Gear by applying the IP address and PORT of the Flight-Gear server. 
+
+You can connect to the filght simulator Flight-Gear by applying the IP address and PORT of the Flight-Gear server. 
 If the data written wasn't correct you will see an error message on the screen and be able to try to reconnect. Also, you must
 write both the PORT and IP address in order to connect, or else a different error message will be seen on the screen.
-after successful connection, you can use the 2 sliders to change the values of the throttle and rudder of the plane.
+
+After successful connection, you can use the 2 sliders to change the values of the throttle and rudder of the plane.
 Also, you can use the joystick component and change the values of the elevator and aileron. All the changed values will be
 sent to the Flight-Gear simulator.
-have fun and try to fly and land the plane safely :)
+
+Have fun and try to fly and land the plane safely :)
 
 
 
